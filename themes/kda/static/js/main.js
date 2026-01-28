@@ -1,3 +1,12 @@
+// Autoplay fallback for browsers with strict autoplay policies
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+  heroVideo.play().catch(() => {
+    // Autoplay blocked - play on first user interaction
+    document.addEventListener('click', () => heroVideo.play(), { once: true });
+  });
+}
+
 // Header scroll effect
 const header = document.querySelector('.site-header');
 window.addEventListener('scroll', () => {
