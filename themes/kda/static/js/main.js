@@ -47,16 +47,22 @@ function goTo(index) {
   dots[current].classList.add('active');
 }
 
-document.querySelector('.carousel-prev')?.addEventListener('click', () => goTo(current - 1));
-document.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
-dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+let timer;
+function resetTimer() {
+  clearTimeout(timer);
+  timer = setTimeout(() => { goTo(current + 1); resetTimer(); }, 10000);
+}
+
+document.querySelector('.carousel-prev')?.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+document.querySelector('.carousel-next')?.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetTimer(); }));
 
 const carousel = document.querySelector('.photo-carousel');
 let touchStartX = 0;
 carousel?.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
 carousel?.addEventListener('touchend', (e) => {
   const delta = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(delta) > 40) goTo(delta > 0 ? current + 1 : current - 1);
+  if (Math.abs(delta) > 40) { goTo(delta > 0 ? current + 1 : current - 1); resetTimer(); }
 });
 
-setInterval(() => goTo(current + 1), 10000);
+resetTimer();
