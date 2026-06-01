@@ -558,13 +558,15 @@ body {
   opacity: 0;
 }
 
-.photo-carousel:hover .carousel-btn {
-  opacity: 1;
-}
+@media (hover: hover) {
+  .photo-carousel:hover .carousel-btn {
+    opacity: 1;
+  }
 
-.carousel-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
-  color: var(--color-red);
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--color-red);
+  }
 }
 
 .carousel-prev { left: 1rem; }
