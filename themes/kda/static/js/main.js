@@ -33,3 +33,22 @@ contactOverlay.addEventListener('click', (e) => {
     contactToggle.classList.remove('active');
   }
 });
+
+// Photo carousel
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+let current = 0;
+
+function goTo(index) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = (index + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+}
+
+document.querySelector('.carousel-prev')?.addEventListener('click', () => goTo(current - 1));
+document.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
+dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+setInterval(() => goTo(current + 1), 10000);
