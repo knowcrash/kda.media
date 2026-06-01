@@ -4,12 +4,12 @@ title = "KDA Media"
 theme = "kda"
 
 [params]
-  description = "Epic drone footage that makes jaws drop"
+  description = "FAA-certified aerial videography and photography for events, real estate, marketing, and commercial projects."
   heroTitle = "Aerial Vision"
-  heroTagline = "Your world from above. We fly fast, shoot clean, and deliver footage that hits different."
+  heroTagline = "Your world from above. Captured with cinematic precision and delivered ready to impress."
 
 [[menus.main]]
-  name = "Why We Do It"
+  name = "Why I Do It"
   url = "#why"
   weight = 1
 
