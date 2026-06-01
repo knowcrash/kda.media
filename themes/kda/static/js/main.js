@@ -51,4 +51,12 @@ document.querySelector('.carousel-prev')?.addEventListener('click', () => goTo(c
 document.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
 dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
+const carousel = document.querySelector('.photo-carousel');
+let touchStartX = 0;
+carousel?.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+carousel?.addEventListener('touchend', (e) => {
+  const delta = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(delta) > 40) goTo(delta > 0 ? current + 1 : current - 1);
+});
+
 setInterval(() => goTo(current + 1), 10000);
