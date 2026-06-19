@@ -1,4 +1,4 @@
-baseURL = "https://kdamedia.com/"
+baseURL = "https://kda.media/"
 languageCode = "en-us"
 title = "KDA Media"
 theme = "kda"
