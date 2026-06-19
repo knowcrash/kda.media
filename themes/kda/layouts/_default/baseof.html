@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  {{ $pageTitle := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
+  <title>{{ $pageTitle }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
+
+  {{/* Social sharing preview (Open Graph + Twitter Card) */}}
+  {{ $ogImage := "img/kda_preview.jpg" | absURL }}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ $pageTitle }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:image:width" content="2400">
+  <meta property="og:image:height" content="1260">
+  <meta property="og:image:alt" content="{{ .Site.Title }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $pageTitle }}">
+  <meta name="twitter:description" content="{{ .Site.Params.description }}">
+  <meta name="twitter:image" content="{{ $ogImage }}">
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
